@@ -21,9 +21,9 @@ public class RedisConfig {
     @Value("${spring.redis.port}")
     private int port;
 
-    //@Value("${spring.redis.password}")
-    @Autowired
-    @Qualifier("awsSecretRedisAuth")
+    @Value("${spring.redis.password}")
+    //@Autowired
+    //@Qualifier("awsSecretRedisAuth")
     private String password;
 
     @Value("${spring.redis.ssl}")

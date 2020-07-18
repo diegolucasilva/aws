@@ -7,7 +7,7 @@ import lombok.Getter;
 public class RedisAuth {
 
     @Getter
-    @JsonProperty("redis_auth")
+    @JsonProperty("spring.redis.password")
     private String redisAuth;
 
 }
