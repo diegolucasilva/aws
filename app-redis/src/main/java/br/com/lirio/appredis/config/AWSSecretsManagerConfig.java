@@ -24,6 +24,7 @@ import java.util.Map;
 @Slf4j
 public class AWSSecretsManagerConfig {
 
+    @Bean
     public static PropertySourcesPlaceholderConfigurer placeholderConfigurerDev(ConfigurableEnvironment env) throws JsonProcessingException {
 
         final String secretName = env.getProperty("aws.secretsManager.secretName");
