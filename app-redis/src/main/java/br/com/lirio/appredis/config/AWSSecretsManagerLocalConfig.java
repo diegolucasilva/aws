@@ -19,7 +19,6 @@ import org.springframework.core.env.MutablePropertySources;
 import java.util.HashMap;
 import java.util.Map;
 
-@Profile("local")
 @Configuration
 @Slf4j
 public class AWSSecretsManagerLocalConfig {
@@ -29,7 +28,7 @@ public class AWSSecretsManagerLocalConfig {
 
         final String secretName = env.getProperty("aws.secretsManager.secretName");
         final String region = env.getProperty("aws.secretsManager.region");
-        final String endpoint = env.getProperty("aws.serviceEndpoint");
+        final String endpoint = env.getProperty("aws.secretsManager.endpoint");
 
         AWSSecretsManager client = AWSSecretsManagerClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint, region))
