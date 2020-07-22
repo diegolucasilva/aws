@@ -22,8 +22,6 @@ public class RedisConfig {
     private int port;
 
     @Value("${spring.redis.password}")
-    //@Autowired
-    //@Qualifier("awsSecretRedisAuth")
     private String password;
 
     @Value("${spring.redis.ssl}")
@@ -35,12 +33,12 @@ public class RedisConfig {
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
         log.info("Host => {}:{}", host, port);
-        //log.info("My Secret => {}", mySecret);
+        log.info("My Secret => {}", password);
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
-        //redisStandaloneConfiguration.setDatabase(database);
-        //redisStandaloneConfiguration.setPassword(password);
+        redisStandaloneConfiguration.setDatabase(database);
+        redisStandaloneConfiguration.setPassword(password);
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration);
-        //jedisConnectionFactory.setUseSsl(ssl);
+        jedisConnectionFactory.setUseSsl(ssl);
         return jedisConnectionFactory;
     }
 
