@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  aws-config-server:
+    container_name: "${LOCALSTACK_DOCKER_NAME-aws-config-server}"
+    image: diegol/aws-config-server:0.0.1-SNAPSHOT
+    expose:
+      - "8089"
+
+  app-redis:
+    container_name: "${LOCALSTACK_DOCKER_NAME-aws-app-redis}"
+    image: diegol/app-redis:0.0.1-SNAPSHOT
+    environment:
+      - CONFIG_URL=aws-config-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - aws-config-server
+
+
+
+#docker network create --driver bridge my-network
+#docker run -p 8089:8089 --network my-network --name aws-config-server diegol/aws-config-server:0.0.1-SNAPSHOT
+#docker run -p 8080:8080 --network my-network -e CONFIG_URL='http://aws-config-server:8089' diegol/app-redis:0.0.1-SNAPSHOT

@@ -9,14 +9,14 @@
 	</parent>
 	<groupId>br.com.lirio</groupId>
 	<artifactId>app-redis</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>app-redis</name>
 	<description>Aws Config Server</description>
 
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR6</spring-cloud.version>
-		<registry>diegolirio</registry>
+		<registry>diegol</registry>
 	</properties>
 
 	<dependencies>
@@ -94,7 +94,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -103,22 +102,26 @@
 			</plugin>
 			<plugin>
 				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>1.2.2</version>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.13</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<imageName>${registry}/${project.artifactId}:${project.version}</imageName>
-					<baseImage>fabric8/java-alpine-openjdk11-jre</baseImage>
-					<entryPoint>["java", "-jar", "-Dspring.profiles.active=develop", "/${project.build.finalName}.jar"]</entryPoint>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.jar</include>
-							<include>*.yml</include>
-						</resource>
-					</resources>
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+					<repository>${registry}/${project.artifactId}</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
 				</configuration>
-			</plugin>				
+			</plugin>
 		</plugins>
 	</build>
 

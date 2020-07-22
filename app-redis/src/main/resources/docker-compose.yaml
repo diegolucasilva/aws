@@ -25,7 +25,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
 
 
-
+# cd /Users/diegolucas/Downloads/aws-master/app-redis/src/main/resources
 #TMPDIR=/private$TMPDIR docker-compose up
   #Criar secret depois do container de pe
   #aws --endpoint-url=http://localhost:4566 \
@@ -33,5 +33,7 @@ services:
   #--description "redis-secret-test" \
   #--secret-string file://redis-secret.json
 
+#docker run -p 8089:8089 diegol/aws-config-server:0.0.1-SNAPSHOT
+#docker run -p 8080:8080 diegol/app-redis:0.0.1-SNAPSHOT
 
 

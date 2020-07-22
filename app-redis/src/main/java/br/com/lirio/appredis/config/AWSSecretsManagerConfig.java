@@ -42,6 +42,8 @@ public class AWSSecretsManagerConfig {
         final String region = env.getProperty("aws.secretsManager.region");
         final String endpoint = env.getProperty("aws.secretsManager.endpoint");
 
+        log.info("service endp oint =>{}", endpoint);
+
         AWSSecretsManager client = AWSSecretsManagerClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint, region))
                 .build();
