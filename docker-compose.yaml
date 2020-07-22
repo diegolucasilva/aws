@@ -20,5 +20,5 @@ services:
 
 
 #docker network create --driver bridge my-network
-#docker run -p 8089:8089 --network my-network --name aws-config-server diegol/aws-config-server:0.0.1-SNAPSHOT
-#docker run -p 8080:8080 --network my-network -e CONFIG_URL='http://aws-config-server:8089' diegol/app-redis:0.0.1-SNAPSHOT
+docker run -p 8089:8089 --network resources_default --name aws-config-server diegol/aws-config-server:0.0.1-SNAPSHOT
+docker run -p 8080:8080 --network resources_default -e CONFIG_URL='http://aws-config-server:8089' -e SM_HOST='http://localstack:4566' diegol/app-redis:0.0.1-SNAPSHOT
