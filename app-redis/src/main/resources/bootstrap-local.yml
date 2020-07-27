@@ -1,0 +1,34 @@
+spring:
+  profiles: default, local
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    ssl: false
+    password: ""
+    database: 10
+
+aws:
+  secretsmanager:
+    enabled: false
+
+cloud:
+  aws:
+    region:
+      static: sa-east-1
+
+management:
+  endpoint:
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: false
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,redis
+  metrics:
+    export:
+      prometheus:
+        enabled: false

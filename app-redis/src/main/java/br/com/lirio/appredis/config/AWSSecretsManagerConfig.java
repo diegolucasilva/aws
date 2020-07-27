@@ -1,3 +1,4 @@
+/*
 package br.com.lirio.appredis.config;
 
 import com.amazonaws.client.builder.AwsClientBuilder;
@@ -29,16 +30,17 @@ public class AWSSecretsManagerConfig {
     @Bean
     public static PropertySourcesPlaceholderConfigurer placeholderConfigurerDev(ConfigurableEnvironment env) throws JsonProcessingException {
 
-        final Map<String, Object> secrets = getSecrets(env);
+     //   final Map<String, Object> secrets = getSecrets(env);
 
-        final MutablePropertySources propertySources = env.getPropertySources();
-        propertySources.addFirst(new MapPropertySource("newmap", secrets));
+        //final MutablePropertySources propertySources = env.getPropertySources();
+      //  propertySources.addFirst(new MapPropertySource("newmap", secrets));
 
         return new PropertySourcesPlaceholderConfigurer();
     }
 
     private static Map<String, Object> getSecrets(ConfigurableEnvironment env) throws JsonProcessingException {
-        final String secretName = env.getProperty("aws.secretsManager.secretName");
+*/
+/*        final String secretName = env.getProperty("aws.secretsManager.secretName");
         final String region = env.getProperty("aws.secretsManager.region");
         final String endpoint = env.getProperty("aws.secretsManager.endpoint");
 
@@ -52,8 +54,9 @@ public class AWSSecretsManagerConfig {
         GetSecretValueResult getSecretValueResult = client.getSecretValue(getSecretValueRequest);
 
         final String secret = getSecretValueResult.getSecretString();
-        return new ObjectMapper().readValue(secret, Map.class);
+        return new ObjectMapper().readValue(secret, Map.class);*//*
+
 
     }
 
-}
+}*/
